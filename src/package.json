@@ -1,0 +1,23 @@
+{
+  "name": "cnpj-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Víctor Macêdo Alexandrino",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "nodemon": "^2.0.2",
+    "pg": "^8.5.1",
+    "sequelize": "^6.3.5",
+    "winston": "^3.2.1"
+  }
+}
