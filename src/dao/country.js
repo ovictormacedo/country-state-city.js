@@ -3,7 +3,7 @@ const log = require('../util/log');
 const conf = require('./config');
 
 const countrySchema = conf.sequelize.define('country', {
-     name: {
+    name: {
         type: DataTypes.STRING
     },
     iso3: {
@@ -58,8 +58,8 @@ const countrySchema = conf.sequelize.define('country', {
 
 exports.getCountries = async () => {
     try {
-        let patterns = await countrySchema.findAll();
-        return patterns;
+        let countries = await countrySchema.findAll();
+        return countries;
     } catch (error) {
         log.error(error);
         return false

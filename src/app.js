@@ -6,16 +6,25 @@ const express = require("express"),
     fs = require('fs'),
     log = require('./util/log');
 
+const countryController = require("./controller/country");
+const stateController = require("./controller/state");
+
+const stateValidator = require("./validator/state");
+
 var app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 async function main () {
-    const countryController = require("./controller/country");
-
     log.info("CEP API - Started");
+
     app.get('/country', countryController.getCountries);
+    app.get(
+        '/country/:countryId/state',
+        stateValidator.getStatesByCountryId,
+        stateController.getStatesByCountryId
+    );
 
     //Checks if the environment is set to production mode
     if (process.env.ENVIRONMENT == 'production') {
