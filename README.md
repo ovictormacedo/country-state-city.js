@@ -12,7 +12,16 @@ Use npm version >=7.6.0
 ```bash
 cd src/
 npm i
-node src/app.js
+node app.js
+```
+
+## Running tests
+
+Use npm version >=7.6.0
+
+```bash
+cd src/
+npm test
 ```
 
 ## Contributing
