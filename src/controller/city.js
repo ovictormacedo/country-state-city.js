@@ -3,7 +3,7 @@ const daoCity = require('../dao/city');
 const { validationResult } = require('express-validator');
 
 exports.getCitiesByStateId = async (req, res) => {
-    let result = null
+    let result = null;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         log.error(errors)
@@ -11,7 +11,7 @@ exports.getCitiesByStateId = async (req, res) => {
         res.status(400);
     } else {
         result = await daoCity.getCitiesByStateId(req.params.stateId);
-        if (Object.keys(result).length == 0) {
+        if (!result) {
             log.info("Cities were not found for "+req.params.stateId);
             result = "Cities were not found for "+req.params.stateId;
             res.status(400);
@@ -20,5 +20,6 @@ exports.getCitiesByStateId = async (req, res) => {
             res.status(200);
         }
     }
-    res.send(result);
+
+    return res.send(result);
 }

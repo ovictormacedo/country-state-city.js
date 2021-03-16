@@ -19,6 +19,10 @@ describe('country', () => {
         router(app())
     });
 
+    afterEach(function () {
+        sinon.restore();
+    });
+
     const getCountriesStubValue = [
         {
             "id": 1,
@@ -40,10 +44,10 @@ describe('country', () => {
             "emojiu": "U+1F1E6 U+1F1EB"
         },
     ];
-    
-    describe('/GET country', () => {
-        const stub = sinon.stub(countryDao, "getCountries").returns(getCountriesStubValue);
-        it('it should GET all the countries', (done) => {
+
+    describe('Get country', () => {
+        it('should GET all the countries', () => {
+            const stub = sinon.stub(countryDao, "getCountries").returns(getCountriesStubValue);
             chai.request(app())
                 .get('/country')
                 .end((err, res) => {
@@ -51,7 +55,6 @@ describe('country', () => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
                     res.body.should.have.length(1)
-                    done();
                 });
         });
     });

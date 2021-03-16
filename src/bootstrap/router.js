@@ -14,7 +14,7 @@ exports.router = app => {
     );
     app.get(
         '/country/:countryId/state/:stateId/city',
+        cityValidator.getCitiesByStateId,
         cityController.getCitiesByStateId,
-        cityValidator.getCitiesByStateId
     );
 }

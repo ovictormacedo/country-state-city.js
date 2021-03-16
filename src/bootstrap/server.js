@@ -18,8 +18,7 @@ exports.webServer = (app) => {
         });
     } else {
         //The environment is set to development mode
-        var options = {};
-        http.createServer(options, app).listen(process.env.PORT, function(){
+        http.createServer({}, app).listen(process.env.PORT, function(){
             log.info("CEP API listening on port " + process.env.PORT);
         });
     }

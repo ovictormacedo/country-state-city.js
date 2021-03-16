@@ -3,7 +3,7 @@ const daoCountry = require('../dao/country');
 
 exports.getCountries = async (req, res) => {
     let result = await daoCountry.getCountries();
-    if (Object.keys(result).length == 0) {
+    if (!result) {
         log.info("Countries were not found");
         result = "Countries were not found"
         res.status(400);

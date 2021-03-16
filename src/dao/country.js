@@ -62,6 +62,6 @@ exports.getCountries = async () => {
         return countries;
     } catch (error) {
         log.error(error);
-        return false
+        return null;
     }
 }

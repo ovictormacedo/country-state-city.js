@@ -1,5 +1,5 @@
 const { param } = require('express-validator');
 
 exports.getStatesByCountryId = [
-    param("countryId").exists().isString()
+    param("countryId").isLength({min: 1, max: 15}),
 ]

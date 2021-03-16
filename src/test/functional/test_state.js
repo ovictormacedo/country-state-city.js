@@ -19,6 +19,10 @@ describe('state', () => {
         router(app())
     });
 
+    afterEach(function () {
+        sinon.restore();
+    });
+
     const getStatesByCountryIdStubValue = [
         {
             "id": 3901,
@@ -31,11 +35,11 @@ describe('state', () => {
         },
     ];
     
-    describe('/GET state', () => {
-        const stub = sinon.stub(stateDao, "getStatesByCountryId").returns(
-            getStatesByCountryIdStubValue
-        );
-        it('it should GET states by country id', (done) => {
+    describe('Get state', () => {
+        it('should GET states by country id', (done) => {
+            const stub = sinon.stub(stateDao, "getStatesByCountryId").returns(
+                getStatesByCountryIdStubValue
+            );
             chai.request(app())
                 .get('/country/1/state')
                 .end((err, res) => {
@@ -43,6 +47,30 @@ describe('state', () => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
                     res.body.should.have.length(1)
+                    done();
+                });
+        });
+
+        it('should not return states of the unknown state', (done) => {
+            const stub = sinon.stub(stateDao, "getStatesByCountryId").returns(null);
+            chai.request(app())
+                .get('/country/123123123123123/state')
+                .end((err, res) => {
+                    expect(stub.calledOnce).to.be.true;
+                    res.should.have.status(400);
+                    res.text.should.be.equal("States were not found for 123123123123123")
+                    done();
+                });
+        });
+
+        it('should return validation error', (done) => {
+            const stub = sinon.stub(stateDao, "getStatesByCountryId").returns(null);
+            chai.request(app())
+                .get('/country/111111111111111111/state')
+                .end((err, res) => {
+                    console.log(res.text)
+                    res.should.have.status(400);
+                    res.text.should.be.equal('{"errors":[{"value":"111111111111111111","msg":"Invalid value","param":"countryId","location":"params"}]}')
                     done();
                 });
         });

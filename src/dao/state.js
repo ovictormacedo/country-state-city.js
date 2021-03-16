@@ -34,6 +34,6 @@ exports.getStatesByCountryId = async (countryId) => {
         return states;
     } catch (error) {
         log.error(error);
-        return false
+        return null;
     }
 }

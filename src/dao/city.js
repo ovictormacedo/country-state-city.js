@@ -37,6 +37,6 @@ exports.getCitiesByStateId = async (stateId) => {
         return cities;
     } catch (error) {
         log.error(error);
-        return false
+        return null;
     }
 }

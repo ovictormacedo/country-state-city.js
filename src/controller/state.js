@@ -11,12 +11,12 @@ exports.getStatesByCountryId = async (req, res) => {
         res.status(400);
     } else {
         result = await daoState.getStatesByCountryId(req.params.countryId);
-        if (Object.keys(result).length == 0) {
-            log.info("Countries were not found for "+req.params.countryId);
-            result = "Countries were not found for "+req.params.countryId
+        if (!result) {
+            log.info("States were not found for "+req.params.countryId);
+            result = "States were not found for "+req.params.countryId
             res.status(400);
         } else {
-            log.info("Retrieving countries for "+req.params.countryId);
+            log.info("Retrieving states for "+req.params.countryId);
             res.status(200);
         }
     }
