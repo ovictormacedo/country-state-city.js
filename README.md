@@ -15,7 +15,7 @@ npm i
 node app.js
 ```
 
-## Running tests (WIP)
+## Running tests
 
 Use npm version >=7.6.0
 
