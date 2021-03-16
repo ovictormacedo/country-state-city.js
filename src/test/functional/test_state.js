@@ -7,7 +7,6 @@ const chaiHttp = require('chai-http');
 const expect = chai.expect;
 const should = chai.should();
 const sinon = require("sinon")
-const { webServer } = require("../../bootstrap/server")
 const { router } = require("../../bootstrap/router")
 let { app } = require('../../bootstrap/app')
 const stateDao = require("../../dao/state")
