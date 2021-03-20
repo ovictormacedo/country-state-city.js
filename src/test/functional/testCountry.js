@@ -1,5 +1,4 @@
 process.env.NODE_ENV = 'test';
-process.env.PORT = 3000
 process.env.APP_LOG_PATH="./cep.log"
 
 const chai = require('chai');
