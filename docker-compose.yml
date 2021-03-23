@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  cep_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cep_api
+    container_name: cep_api
+    restart: unless-stopped
+    env_file: .env-docker
+    environment:
+      - APPLICATION_PORT=$APPLICATION_PORT
+      - APP_LOG_PATH=$APP_LOG_PATH
+      - DATABASE_HOST=$DATABASE_HOST
+      - DATABASE_USER=$DATABASE_USER
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - DATABASE_NAME=$DATABASE_NAME
+      - DATABASE_PORT=$DATABASE_PORT
+      - DATABASE_DIALECT=$DATABASE_DIALECT
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,8 +1,11 @@
 FROM node:15.11.0-alpine3.10
-WORKDIR /var/www/cep/src
-COPY . /var/cep
-RUN cp -R /var/cep/src /var/www/cep
-RUN mv .env-production .env
+
+WORKDIR /var/cep
+
+COPY ./src /var/cep
+
 RUN npm install
-EXPOSE 80
-CMD ["node", "app.js"]
+
+EXPOSE 3000
+
+CMD [ "node", "app.js" ]
