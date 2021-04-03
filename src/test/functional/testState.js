@@ -39,7 +39,7 @@ describe('state', () => {
                 getStatesByCountryIdStubValue
             );
             chai.request(app())
-                .get('/country/1/state')
+                .get('/api/cep/country/1/state')
                 .end((err, res) => {
                     expect(stub.calledOnce).to.be.true;
                     res.should.have.status(200);
@@ -52,7 +52,7 @@ describe('state', () => {
         it('should not return states of the unknown state', (done) => {
             const stub = sinon.stub(stateDao, "getStatesByCountryId").returns(null);
             chai.request(app())
-                .get('/country/123123123123123/state')
+                .get('/api/cep/country/123123123123123/state')
                 .end((err, res) => {
                     expect(stub.calledOnce).to.be.true;
                     res.should.have.status(400);
@@ -64,7 +64,7 @@ describe('state', () => {
         it('should return validation error', (done) => {
             const stub = sinon.stub(stateDao, "getStatesByCountryId").returns(null);
             chai.request(app())
-                .get('/country/111111111111111111/state')
+                .get('/api/cep/country/111111111111111111/state')
                 .end((err, res) => {
                     console.log(res.text)
                     res.should.have.status(400);

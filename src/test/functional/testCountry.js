@@ -47,7 +47,7 @@ describe('country', () => {
         it('should GET all the countries', () => {
             const stub = sinon.stub(countryDao, "getCountries").returns(getCountriesStubValue);
             chai.request(app())
-                .get('/country')
+                .get('/api/cep/country')
                 .end((err, res) => {
                     expect(stub.calledOnce).to.be.true;
                     res.should.have.status(200);
