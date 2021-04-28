@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, literal } = require('sequelize');
 const log = require('../util/log');
 const conf = require('./config');
 
@@ -30,6 +30,7 @@ exports.getStatesByCountryId = async (countryId) => {
     try {
         let states = await stateSchema.findAll({
             where: { country_id: countryId },
+            order: literal("name", "ASC"),
         });
         return states;
     } catch (error) {

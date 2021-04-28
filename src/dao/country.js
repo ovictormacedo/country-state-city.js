@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, literal } = require('sequelize');
 const log = require('../util/log');
 const conf = require('./config');
 
@@ -58,7 +58,7 @@ const countrySchema = conf.sequelize.define('country', {
 
 exports.getCountries = async () => {
     try {
-        let countries = await countrySchema.findAll();
+        let countries = await countrySchema.findAll({order: literal("native", "ASC")});
         return countries;
     } catch (error) {
         log.error(error);
