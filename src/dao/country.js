@@ -58,7 +58,22 @@ const countrySchema = conf.sequelize.define('country', {
 
 exports.getCountries = async () => {
     try {
-        let countries = await countrySchema.findAll({order: literal("native", "ASC")});
+        let countries = await countrySchema.findAll({
+            order: literal("native", "ASC"),
+        });
+        return countries;
+    } catch (error) {
+        log.error(error);
+        return null;
+    }
+}
+
+exports.getCountriesByRegion = async (region) => {
+    try {
+        let countries = await countrySchema.findAll({
+            where: { region: region },
+            order: literal("native", "ASC"),
+        });
         return countries;
     } catch (error) {
         log.error(error);

@@ -13,3 +13,16 @@ exports.getCountries = async (req, res) => {
     }
     res.send(result);
 }
+
+exports.getCountriesByRegion = async (req, res) => {
+    let result = await daoCountry.getCountriesByRegion(req.params.region);
+    if (!result) {
+        log.info("Countries by region were not found");
+        result = "Countries by region were not found"
+        res.status(400);
+    } else {
+        log.info("Retrieving countries by region");
+        res.status(200);
+    }
+    res.send(result);
+}
