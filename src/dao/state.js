@@ -28,11 +28,19 @@ const stateSchema = conf.sequelize.define('state', {
 
 exports.getStatesByCountryId = async (countryId) => {
     try {
-        let states = await stateSchema.findAll({
+        return await stateSchema.findAll({
             where: { country_id: countryId },
             order: literal("name", "ASC"),
         });
-        return states;
+    } catch (error) {
+        log.error(error);
+        return null;
+    }
+}
+
+exports.getStateById = async (id) => {
+    try {
+        return await stateSchema.findOne({where: { id: id }});
     } catch (error) {
         log.error(error);
         return null;

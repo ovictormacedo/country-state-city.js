@@ -26,3 +26,16 @@ exports.getCountriesByRegion = async (req, res) => {
     }
     res.send(result);
 }
+
+exports.getCountryById = async (req, res) => {
+    let result = await daoCountry.getCountryById(req.params.countryId);
+    if (!result) {
+        log.info("Country not found");
+        result = "Country not found"
+        res.status(400);
+    } else {
+        log.info("Retrieving country by id");
+        res.status(200);
+    }
+    res.send(result);
+}

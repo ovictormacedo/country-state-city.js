@@ -70,11 +70,20 @@ exports.getCountries = async () => {
 
 exports.getCountriesByRegion = async (region) => {
     try {
-        let countries = await countrySchema.findAll({
+        return await countrySchema.findAll({
             where: { region: region },
             order: literal("native", "ASC"),
         });
         return countries;
+    } catch (error) {
+        log.error(error);
+        return null;
+    }
+}
+
+exports.getCountryById = async (id) => {
+    try {
+        return await countrySchema.findOne({where: {id: id}})
     } catch (error) {
         log.error(error);
         return null;

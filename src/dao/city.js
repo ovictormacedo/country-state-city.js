@@ -40,3 +40,12 @@ exports.getCitiesByStateId = async (stateId) => {
         return null;
     }
 }
+
+exports.getCityById = async (id) => {
+    try {
+        return await citySchema.findOne({where: { id: id }});
+    } catch (error) {
+        log.error(error);
+        return null;
+    }
+}
