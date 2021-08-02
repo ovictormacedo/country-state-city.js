@@ -24,6 +24,11 @@ cd src/
 npm test
 ```
 
+## Docker
+```bash
+docker-compose up --force-recreate --build
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
